@@ -1,13 +1,11 @@
-import { Box, Button, Input, Table } from "@mantine/core";
+import { Box, Button } from "@mantine/core";
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
-import { Globe } from "tabler-icons-react";
-import AddCity from "./AddCity";
+
 import data from "./data";
 
 const HomePage = () => {
-  const [filter, setFilter] = useState("");
   return (
     <TableWrapper>
       <Box
@@ -29,8 +27,7 @@ const HomePage = () => {
           },
         })}
       >
-        
-     <h2>List of the countries</h2>
+        <h2>List of the countries</h2>
 
         <ul>
           {data.map((country) => {

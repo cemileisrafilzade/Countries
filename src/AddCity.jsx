@@ -1,29 +1,19 @@
-import { useForm, formList } from "@mantine/form";
-import {
-  TextInput,
-  Switch,
-  Group,
-  ActionIcon,
-  Box,
-  Text,
-  Button,
-  Code,
-} from "@mantine/core";
-import { Check, Plus, Trash ,Edit, Globe } from "tabler-icons-react";
+import { TextInput, Box, Button } from "@mantine/core";
+import { Check, Plus, Trash, Edit, Globe } from "tabler-icons-react";
 import data from "./data";
 import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import styled from "styled-components";
-import { useNotifications, showNotification } from "@mantine/notifications";
+import { showNotification } from "@mantine/notifications";
 
 function AddCity() {
-  const notifications = useNotifications();
+  // const notifications = useNotifications();
 
   const { country } = useParams();
   const [cities, setCities] = useState([]);
   const [edit, setEdit] = useState(false);
   const [currentEditing, setCurrentEditing] = useState(null);
-  const [newCityName,setNewCityName] = useState("");
+  const [newCityName, setNewCityName] = useState("");
   useEffect(() => {
     data.map((count) => {
       if (count.country === country) {
@@ -31,7 +21,6 @@ function AddCity() {
       }
     });
   }, [country]);
-
 
   const handleDelete = (city) => {
     const newCities = cities.filter((c) => c !== city);
@@ -45,8 +34,6 @@ function AddCity() {
     });
   };
 
-
-  
   const handleAdd = () => {
     const newCities = [...cities, newCityName];
     setCities(newCities);
@@ -57,10 +44,9 @@ function AddCity() {
     });
   };
 
-  const handleEdit = (city,index) => {
+  const handleEdit = (city, index) => {
     setCurrentEditing(index);
     setEdit(!edit);
-    
   };
   const handleEdited = (city, index) => {
     setCurrentEditing(index);
@@ -107,13 +93,20 @@ function AddCity() {
           })}
         >
           <div className="createWrapper">
-          <TextInput name="city" placeholder="add your city "
-          onChange={(e) => setNewCityName(e.target.value)}
-          icon={<Globe size={20} />}
-          />
-          <Button onClick={()=>handleAdd()} variant="outline" color="green" m={2}>
-          <Plus />
-          </Button>
+            <TextInput
+              name="city"
+              placeholder="add your city "
+              onChange={(e) => setNewCityName(e.target.value)}
+              icon={<Globe size={20} />}
+            />
+            <Button
+              onClick={() => handleAdd()}
+              variant="outline"
+              color="green"
+              m={2}
+            >
+              <Plus />
+            </Button>
           </div>
 
           <ul>
@@ -134,7 +127,7 @@ function AddCity() {
                 <div>
                   {edit === true && currentEditing === index ? (
                     <Button
-                       onClick={() => handleEdited(city, index)}
+                      onClick={() => handleEdited(city, index)}
                       color="green"
                       variant="outline"
                     >
@@ -197,8 +190,8 @@ const Wrapper = styled.div`
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
-input{
-  width: 500px;
-}
-}
+    input {
+      width: 500px;
+    }
+  }
 `;
