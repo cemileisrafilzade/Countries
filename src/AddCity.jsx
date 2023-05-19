@@ -18,6 +18,7 @@ function AddCity() {
     data.map((count) => {
       if (count.country === country) {
         setCities(count.cities);
+        return 1;
       }
     });
   }, [country]);
